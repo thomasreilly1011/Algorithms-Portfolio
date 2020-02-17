@@ -1,13 +1,5 @@
-/******************************************************************************
- *  Compilation:  javac ThreeSumA.java
- *  Execution:    java ThreeSum input.txt
- *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
- ******************************************************************************/
-import main.In;
+package lab2;
 
-import java.util.Arrays;
 import java.lang.*;
 
 public class ThreeSumA {

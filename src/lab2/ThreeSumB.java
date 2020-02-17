@@ -1,25 +1,6 @@
-/******************************************************************************
- *  Compilation:  javac ThreeSumB.java
- *  Execution:    java ThreeSumB input.txt
- *
- *  Reads n integers
- *  and counts the number of triples that sum to exactly 0.
- *
- *  Limitations
- *  -----------
- *     - we ignore integer overflow
- *     - doesn't handle case when input has duplicates
- *     
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
- *
- ******************************************************************************/
-
-import main.In;
+package lab2;
 
 import java.util.Arrays;
-import java.lang.*;
-
 
 public class ThreeSumB {
 
