@@ -1,7 +1,5 @@
 package lab5;
 
-import lab4.SortingAlgorithms;
-
 import java.util.Arrays;
 import java.util.Random;
 
@@ -24,7 +22,7 @@ public class TestSorts
         //Testing regular merge sort
         System.out.println("Sorting an array with regular merge-sort: " + Arrays.toString(hugeArr));
         startTime = nanoTime();
-        hugeArr = MergeSort.mergeSort(hugeArr);
+        hugeArr = MergeSort.sort(hugeArr);
         timeTaken = nanoTime() - startTime;
         System.out.println("The regular merge sort took " + timeTaken + " nanoseconds to sort to: " + Arrays.toString(hugeArr));
         System.out.println();

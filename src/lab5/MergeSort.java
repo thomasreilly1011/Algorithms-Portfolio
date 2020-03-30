@@ -8,11 +8,11 @@ public class MergeSort
     {
         int[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
         System.out.println("Random array: " + Arrays.toString(a));
-        a = mergeSort(a);
+        a = sort(a);
         System.out.println("Random array sorted using merge-sort: " + Arrays.toString(a));
     }
 
-    public static int[] mergeSort(int[] arr) {
+    public static int[] sort(int[] arr) {
         int[] a = arr;
         int N = a.length;
         int[] left;
@@ -33,8 +33,8 @@ public class MergeSort
             right = Arrays.copyOfRange(a, N/2, N);
         }
 
-        left = mergeSort(left);
-        right = mergeSort(right);
+        left = sort(left);
+        right = sort(right);
 
         int[] mergeArrays = merge(left, right);
 
