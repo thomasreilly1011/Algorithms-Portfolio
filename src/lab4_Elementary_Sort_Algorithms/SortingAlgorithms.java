@@ -1,4 +1,4 @@
-package lab4;
+package lab4_Elementary_Sort_Algorithms;
 
 public class SortingAlgorithms {
     public static int[] selectionSort(int[] arr) {

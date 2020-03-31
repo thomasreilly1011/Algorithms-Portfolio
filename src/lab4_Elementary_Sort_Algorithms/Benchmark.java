@@ -1,9 +1,9 @@
-package lab4;
+package lab4_Elementary_Sort_Algorithms;
 
 import java.util.Random;
 import static java.lang.System.nanoTime;
 
-public class TestSorts {
+public class Benchmark {
 
     public static void main(String[] args) {
         long startTime;

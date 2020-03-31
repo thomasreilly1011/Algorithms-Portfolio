@@ -1,4 +1,4 @@
-package lab2;
+package lab2_Asymptotic_Time_Analysis;
 
 /******************************************************************************
  *  Compilation:  javac In.java

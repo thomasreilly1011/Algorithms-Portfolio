@@ -1,11 +1,11 @@
-package lab5;
+package lab5_Merge_Sorts;
 
 import java.util.Arrays;
 import java.util.Random;
 
 import static java.lang.System.nanoTime;
 
-public class TestSorts
+public class Benchmark
 {
 
     public static void main(String[] args) {

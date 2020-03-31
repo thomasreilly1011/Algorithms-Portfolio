@@ -1,4 +1,4 @@
-package lab6;
+package lab6_Quick_Sorts;
 
 public class QuickSort {
     static void sort(Integer[] arr, int low, int high) {

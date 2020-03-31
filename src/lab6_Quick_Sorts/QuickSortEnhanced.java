@@ -1,4 +1,4 @@
-package lab6;
+package lab6_Quick_Sorts;
 
 import java.util.Random;
 

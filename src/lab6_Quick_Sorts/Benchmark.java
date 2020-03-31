@@ -1,11 +1,11 @@
-package lab6;
+package lab6_Quick_Sorts;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class TestSorts {
+public class Benchmark {
     private static final Random random = new Random();
 
     public static void main(String[] args) {

@@ -1,54 +1,40 @@
-package lab5;
+package lab5_Merge_Sorts;
 
 import java.util.Arrays;
 
-public class MergeSortEnhanced
+public class MergeSort
 {
     public static void main(String[] args)
     {
         int[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
         System.out.println("Random array: " + Arrays.toString(a));
-        a = mergeSort(a);
+        a = sort(a);
         System.out.println("Random array sorted using merge-sort: " + Arrays.toString(a));
     }
 
-    public static int[] mergeSort(int[] arr) {
+    public static int[] sort(int[] arr) {
         int[] a = arr;
         int N = a.length;
-        int[] left = new int[N];
-        int[] right = new int[N];
+        int[] left;
+        int[] right;
 
-        //Base case
+        //base case
         if (N == 1) {
             return a;
         }
-        //Enhancement 1: Cut off case for smaller arrays.
-         if (N <= 3) {
-            return insertionSort(a);
-         }
 
-        left = Arrays.copyOfRange(a, 0, N/2);
-        right = Arrays.copyOfRange(a, N/2, N);
 
-        left = mergeSort(left);
-        right = mergeSort(right);
 
-        //Enhancement 2: If they're already sorted, just join them.
-        if(left[left.length-1] <= right[0]) {
-            int[] e = new int[left.length+right.length];
-            int j = 0;
-            for (int value : left)
-            {
-                e[j] = value;
-                j++;
-            }
-            for (int value : right)
-            {
-                e[j] = value;
-                j++;
-            }
-            return e;
+        if (N % 2 == 0) {
+            left = Arrays.copyOfRange(a, 0, N/2);
+            right = Arrays.copyOfRange(a, N/2, N);
+        } else {
+            left = Arrays.copyOfRange(a, 0, N/2);
+            right = Arrays.copyOfRange(a, N/2, N);
         }
+
+        left = sort(left);
+        right = sort(right);
 
         int[] mergeArrays = merge(left, right);
 
@@ -91,20 +77,7 @@ public class MergeSortEnhanced
         return S;
     }
 
-    public static int[] insertionSort (int[] arr) {
-        int key;
-        int j;
-        for (int i=1; i<arr.length; ++i) {
-            key = arr[i];
-            j = i-1;
-            while (j >= 0 && arr[j] > key) {
-                arr[j+1] = arr[j];
-                j--;
-                arr[j+1] = key;
-            }
-        }
-        return arr;
-    }
-
-
 }
+
+
+
