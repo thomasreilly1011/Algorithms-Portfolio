@@ -1,7 +1,7 @@
 package lab7_Pattern_Search;
 
 public class BruteForceSearch {
-    static void search(String txt, String pat) {
+    public static void search(String txt, String pat) {
         int n = txt.length();
         int m = pat.length();
 

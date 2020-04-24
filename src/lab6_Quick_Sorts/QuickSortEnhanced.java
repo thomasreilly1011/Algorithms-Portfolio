@@ -8,10 +8,16 @@ public class QuickSortEnhanced {
     static void sort(Integer[] arr, int low, int high) {
         int pi;
         if (high <= low + CUTOFF) {
+            //Insertion sort cut-off enhancement
             insertionSort(arr, low, high);
         } else if (low <= high) {
-            shuffle(arr, low, high);
+            //Shuffling Enhancement
+            //shuffle(arr, low, high);
 
+            //Median Of Three Enhancement
+            int mid = low+(high-low)/2;
+            medianOfThree(arr, low, mid, high);
+            swapReferences(arr, mid, high-1);
             pi = partition(arr, low, high);
 
             sort(arr, low, pi-1);
@@ -20,11 +26,8 @@ public class QuickSortEnhanced {
     }
 
     static int partition(Integer[] arr, int low, int high) {
-        //sortLowMidHigh(arr, low, (high-low)/2, high);
-        int median = medianOf3(arr, low, (high-low)/2, high);
         //Pivot (Element to be placed at the right position
         int pivot = arr[high];
-        //int pivot = arr[median];
         //Index of the smaller element
         int i = low-1;
         for (int j = low; j <= high-1; j++) {
@@ -54,6 +57,16 @@ public class QuickSortEnhanced {
         }
     }
 
+//    public static void shuffle(Object[] a, int low, int high) {
+//        for (int i = low; i <= high; i++) {
+//            // choose index uniformly in [0, i]
+//            int r = (int) ((Math.random() * (i))+low);
+//            Object swap = a[r];
+//            a[r] = a[i];
+//            a[i] = swap;
+//        }
+//    }
+
     public static void shuffle(Object[] a, int low, int high) {
         Random random = new Random();
         for (int i = low; i <= high; i++) {
@@ -65,20 +78,7 @@ public class QuickSortEnhanced {
         }
     }
 
-    public static int medianOf3(Integer[] arr, int low, int mid, int high) {
-        if (arr[high]>arr[mid] && arr[low]<arr[mid] || arr[high]<arr[mid] && arr[low]>arr[mid]) {
-            // Mid is the median
-            return mid;
-        } else if (arr[mid]>arr[high] && arr[low]<arr[high] || arr[mid]<arr[high] && arr[low]>arr[high]) {
-            //High is the median
-            return high;
-        } else {
-            //Low is the median
-            return low;
-        }
-    }
-
-    public static void sortLowMidHigh(Integer[] arr, int low, int mid, int high) {
+    public static void medianOfThree(Integer[] arr, int low, int mid, int high) {
         if(arr[mid] < arr[low])
             swapReferences(arr, low, mid);
         if(arr[high] < arr[low])

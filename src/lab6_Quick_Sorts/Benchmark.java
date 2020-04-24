@@ -1,6 +1,7 @@
 package lab6_Quick_Sorts;
 
 import java.text.DecimalFormat;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -9,6 +10,9 @@ public class Benchmark {
     private static final Random random = new Random();
 
     public static void main(String[] args) {
+        test();
+    }
+    private static void test() {
         int N=10;
         long start, timeTaken;
 
@@ -37,13 +41,16 @@ public class Benchmark {
             //Print the results (and test that it is sorted given that n <= 100).
             if (N<=1000) {
                 System.out.println(decimalFormat.format(N) + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
+                if (!isSorted(a, a.length)) {
+                    System.out.println(Arrays.toString(a));
+                }
 
             } else {
                 System.out.println(N + " " + decimalFormat.format(timeTaken) + "ns");
             }
 
             //Increment N for next iteration
-            N*=10;
+            N*=1.5;
         }
 
 
@@ -51,7 +58,7 @@ public class Benchmark {
         System.out.println("Array Size | Time Taken | IsSorted?");
 
         N=10;
-        while (N<=10000) {
+        while (N<=100000) {
             //Generate a random array of size N
             LinkedList<Integer> arr = random.ints(0, N).distinct().limit(N).boxed()
                     .collect(Collectors.toCollection(LinkedList<Integer>::new));
@@ -69,13 +76,15 @@ public class Benchmark {
             //Print the results (and test that it is sorted given that n <= 100).
             if (N<=1000) {
                 System.out.println(N + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
-
+                if (!isSorted(a, a.length)) {
+                    System.out.println(Arrays.toString(a));
+                }
             } else {
                 System.out.println(N + " " + decimalFormat.format(timeTaken) + "ns");
             }
 
             //Increment N for next iteration
-            N*=10;
+            N*=1.5;
         }
     }
 

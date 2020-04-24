@@ -2,7 +2,7 @@ package lab3_Recursion;
 
 public class Hanoi {
 
-    static void towersOfHanoi(int disk, char source, char dest, char auxiliary) {
+    public static void towersOfHanoi(int disk, char source, char dest, char auxiliary) {
         if (disk == 0) {
             System.out.println("Move from " + source + " to " + dest + ".");
         } else {

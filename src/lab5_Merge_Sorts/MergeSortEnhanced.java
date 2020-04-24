@@ -6,17 +6,17 @@ public class MergeSortEnhanced
 {
     public static void main(String[] args)
     {
-        int[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
+        Integer[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
         System.out.println("Random array: " + Arrays.toString(a));
-        a = mergeSort(a);
+        a = sort(a);
         System.out.println("Random array sorted using merge-sort: " + Arrays.toString(a));
     }
 
-    public static int[] mergeSort(int[] arr) {
-        int[] a = arr;
+    public static Integer[] sort(Integer[] arr) {
+        Integer[] a = arr;
         int N = a.length;
-        int[] left = new int[N];
-        int[] right = new int[N];
+        Integer[] left;
+        Integer[] right;
 
         //Base case
         if (N == 1) {
@@ -30,12 +30,12 @@ public class MergeSortEnhanced
         left = Arrays.copyOfRange(a, 0, N/2);
         right = Arrays.copyOfRange(a, N/2, N);
 
-        left = mergeSort(left);
-        right = mergeSort(right);
+        left = sort(left);
+        right = sort(right);
 
         //Enhancement 2: If they're already sorted, just join them.
         if(left[left.length-1] <= right[0]) {
-            int[] e = new int[left.length+right.length];
+            Integer[] e = new Integer[left.length+right.length];
             int j = 0;
             for (int value : left)
             {
@@ -50,15 +50,15 @@ public class MergeSortEnhanced
             return e;
         }
 
-        int[] mergeArrays = merge(left, right);
+        Integer[] mergeArrays = merge(left, right);
 
         return mergeArrays;
     }
 
-    public static int[] merge(int[] a, int[] b)
+    public static Integer[] merge(Integer[] a, Integer[] b)
     {
         int i = 0;
-        int[] S = new int[a.length + b.length];
+        Integer[] S = new Integer[a.length + b.length];
 
         while (a.length != 0 && b.length != 0)
         {
@@ -91,7 +91,7 @@ public class MergeSortEnhanced
         return S;
     }
 
-    public static int[] insertionSort (int[] arr) {
+    public static Integer[] insertionSort (Integer[] arr) {
         int key;
         int j;
         for (int i=1; i<arr.length; ++i) {

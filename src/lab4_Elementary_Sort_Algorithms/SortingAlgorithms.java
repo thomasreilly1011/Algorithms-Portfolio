@@ -1,13 +1,13 @@
 package lab4_Elementary_Sort_Algorithms;
 
 public class SortingAlgorithms {
-    public static int[] selectionSort(int[] arr) {
+    public static Integer[] selectionSort(Integer[] arr) {
         int temp;
         int min_index;
 
-        for (int i=0; i<arr.length-1; i++) {
+        for (int i=0; i<arr.length; i++) {
             min_index = i;
-            for (int j=i+1; j<arr.length-1; j++) {
+            for (int j=i+1; j<arr.length; j++) {
                 if(arr[min_index] > arr[j]) {
                     min_index = j;
                 }
@@ -19,7 +19,7 @@ public class SortingAlgorithms {
         return arr;
     }
 
-    public static int[] insertionSort (int[] arr) {
+    public static Integer[] insertionSort (Integer[] arr) {
         int key;
         int j;
         for (int i=1; i<arr.length; ++i) {
@@ -34,7 +34,7 @@ public class SortingAlgorithms {
         return arr;
     }
 
-    public static int[] stalinSort (int[] arr) {
+    public static Integer[] stalinSort (Integer[] arr) {
         int i = 0;
         for (int j = 1; j < arr.length; i++, j++) {
             if (arr[i] > arr[j]) {

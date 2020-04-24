@@ -28,7 +28,7 @@ public class Trie {
     If the key is not present, inserts into trie
     If the key is prefix of Trie node, marks leaf node
      */
-    static void insert(String key) {
+    public static void insert(String key) {
         int letterIndex;
         TrieNode curr = root;
 
@@ -46,7 +46,7 @@ public class Trie {
     /*
     Returns true if key presents in trie, else false
      */
-    static boolean search(String key) {
+    public static boolean search(String key) {
         int letterIndex;
         TrieNode curr = root;
 

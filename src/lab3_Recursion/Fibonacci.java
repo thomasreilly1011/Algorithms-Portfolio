@@ -3,7 +3,7 @@ package lab3_Recursion;
 
 public class Fibonacci {
 
-    static int fibonacciRecursive(int n) {
+    public static int fibonacciRecursive(int n) {
         if (n == 0) {
             return 0;
         } else if (n == 1) {
@@ -15,7 +15,7 @@ public class Fibonacci {
     }
 
 
-    static int fibonacciIterative(int n){
+    public static int fibonacciIterative(int n){
         if (n<=1)
             return 1;
 

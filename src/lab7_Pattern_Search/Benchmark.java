@@ -3,7 +3,7 @@ package lab7_Pattern_Search;
 import java.util.Random;
 
 public class Benchmark {
-    private static String generateRandomString(int N) {
+    public static String generateRandomString(int N) {
         int leftLimit = 65; // letter 'A'
         int rightLimit = 66; // letter 'B'
         Random random = new Random();

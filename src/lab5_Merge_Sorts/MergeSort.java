@@ -6,17 +6,17 @@ public class MergeSort
 {
     public static void main(String[] args)
     {
-        int[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
+        Integer[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
         System.out.println("Random array: " + Arrays.toString(a));
         a = sort(a);
         System.out.println("Random array sorted using merge-sort: " + Arrays.toString(a));
     }
 
-    public static int[] sort(int[] arr) {
-        int[] a = arr;
+    public static Integer[] sort(Integer[] arr) {
+        Integer[] a = arr;
         int N = a.length;
-        int[] left;
-        int[] right;
+        Integer[] left;
+        Integer[] right;
 
         //base case
         if (N == 1) {
@@ -36,15 +36,15 @@ public class MergeSort
         left = sort(left);
         right = sort(right);
 
-        int[] mergeArrays = merge(left, right);
+        Integer[] mergeArrays = merge(left, right);
 
         return mergeArrays;
     }
 
-    public static int[] merge(int[] a, int[] b)
+    public static Integer[] merge(Integer[] a, Integer[] b)
     {
         int i = 0;
-        int[] S = new int[a.length + b.length];
+        Integer[] S = new Integer[a.length + b.length];
 
         while (a.length != 0 && b.length != 0)
         {

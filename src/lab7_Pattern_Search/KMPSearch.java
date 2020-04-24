@@ -1,7 +1,7 @@
 package lab7_Pattern_Search;
 
 public class KMPSearch {
-    static void search(String txt, String pat) {
+    public static void search(String txt, String pat) {
         int M = pat.length();
         int N = txt.length();
 
