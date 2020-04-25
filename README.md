@@ -22,6 +22,7 @@ As you can see, the source files are organised into packages which represent the
 All table data for these graphs can be found [here](https://docs.google.com/spreadsheets/d/1MmkeZdxXCI8Pb67V6UyhJViVvWnmQ6aw54KjmmmsRVQ/edit?usp=sharing).
 ### Lab 3 - Asymptotic Time Analysis
 ![AsymptoticTimeAnalysisGraph](./Analysis-Figures/asymptotic-time-analysis.png)
+
 Here, we analise two triple sum algorithms ```ThreeSumA``` and ```ThreeSumB```. A range of input sizes are used ranging from 1 thousand inputs to 32 thousand inputs. We observe that for smaller inputs of 1  or 2 thousand it is difficult to see a difference in the efficiency of the algorithms. However, with inputs ranging up to 32 thousand we can see ```ThreeSumA```'s run time follows an exponential trend while ```ThreeSumB```'s run time follows a  quadratic trend.
 ### Lab 4 - Elementary Sorting Algorithms
 ![AsymptoticTimeAnalysisGraph](./Analysis-Figures/elementary-sorts.png)
