@@ -1,4 +1,5 @@
 import static java.lang.System.nanoTime;
+import static java.lang.System.setOut;
 
 public class Main {
     public static void main(String[] args) {
@@ -107,7 +108,9 @@ public class Main {
         System.out.println("A series of randomly generated string of A or B will be generated of incrementing length.");
         System.out.println("Additionally for each randomly generated string, a pattern of length 4 will be generated also made up of A's or B's.");
         System.out.println("Both a Brute Force algorithm (BF) and a Knuth-Morris-Pattern-Search algorithm (KMP) will attempt to find instances of the pattern in the text.");
-        System.out.println("The Indexes and the time taken for each algorithm will be printed to the console.");;
+        System.out.println("The Indexes and the time taken for each algorithm will be printed to the console.");
+
+        System.out.println("\nNOTE: Results will only be printed for text size of less than 200. This is to make the console more readable.");
 
         lab7_Pattern_Search.Benchmark.main(null);
     }

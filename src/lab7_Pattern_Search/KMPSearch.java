@@ -22,7 +22,9 @@ public class KMPSearch {
                 j++;
             }
             if (j==M) {
-                System.out.print("Match found at index: " + (i-j) + ", ");
+                if (txt.length() <= 200) {
+                    System.out.print("Match found at index: " + (i-j) + ", ");
+                }
                 j = lps[j-1];
             } else if (i<N && pat.charAt(j) != txt.charAt(i)) {
                 if (j != 0) {

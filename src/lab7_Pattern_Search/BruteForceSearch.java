@@ -15,7 +15,9 @@ public class BruteForceSearch {
                 }
             }
             if (i == m) {
-                System.out.print("Match found at index: " + pos + ", ");
+                if (txt.length() <= 200) {
+                    System.out.print("Match found at index: " + pos + ", ");
+                }
             }
         }
         System.out.println();
