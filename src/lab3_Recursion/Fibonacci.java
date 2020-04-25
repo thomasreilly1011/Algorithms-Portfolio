@@ -3,6 +3,11 @@ package lab3_Recursion;
 
 public class Fibonacci {
 
+    /**
+     * A recursive algorithm that computes the nth element in the fibonacci sequence.
+     * @param n element index
+     * @return the nth element in the fibonacci sequence
+     */
     public static int fibonacciRecursive(int n) {
         if (n == 0) {
             return 0;
@@ -14,7 +19,11 @@ public class Fibonacci {
 
     }
 
-
+    /**
+     * An iterative algorithm that computes the nth element in the fibonacci sequence.
+     * @param n element index
+     * @return the nth element in the fibonacci sequence
+     */
     public static int fibonacciIterative(int n){
         if (n<=1)
             return 1;

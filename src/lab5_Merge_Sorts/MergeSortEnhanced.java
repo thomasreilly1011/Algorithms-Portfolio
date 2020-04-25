@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 public class MergeSortEnhanced
 {
+    /** The array size at which the quick sort algorithm will cease and perform insertion sort instead **/
+    final static int CUTOFF = 4;
+
     public static void main(String[] args)
     {
         Integer[] a = {5, 1, 4 , 8, 10, 9, 43, 3, 6, 7};
@@ -12,6 +15,11 @@ public class MergeSortEnhanced
         System.out.println("Random array sorted using merge-sort: " + Arrays.toString(a));
     }
 
+    /**
+     * Performs a selection sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     public static Integer[] sort(Integer[] arr) {
         Integer[] a = arr;
         int N = a.length;
@@ -23,7 +31,7 @@ public class MergeSortEnhanced
             return a;
         }
         //Enhancement 1: Cut off case for smaller arrays.
-         if (N <= 3) {
+         if (N <= CUTOFF) {
             return insertionSort(a);
          }
 

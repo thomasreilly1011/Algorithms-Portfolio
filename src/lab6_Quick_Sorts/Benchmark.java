@@ -7,13 +7,23 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Benchmark {
+
     private static final Random random = new Random();
 
+    /** The starting Array size for the benchmark series */
+    private final static int N = 10;
+    /** The limiting Array size for the benchmark series */
+    private final static int M = 100000;
+    /** The factor that N should be incremented by for each benchmark */
+    private final static double FACTOR_OF_N = 1.5;
+
+    /**
+     * Performs a series of BenchMarks on the sorting algorithms available in the {@code QuickSort} and {@code EnhancedQuickSort} class of this package.
+     * Benchmarks record the time taken to sort arrays of size {@code N} up to {@code M} incremented at a factor of {@code FACTOR_OF_N}
+     * @param args No arguments necessary.
+     */
     public static void main(String[] args) {
-        test();
-    }
-    private static void test() {
-        int N=10;
+        int n=N;
         long start, timeTaken;
 
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
@@ -21,70 +31,78 @@ public class Benchmark {
         decimalFormat.setGroupingSize(3);
 
         System.out.println("-----------Testing Regular Quick Sort------------");
-        System.out.println("Array Size | Time Taken | IsSorted?");
+        System.out.println("1. Array Size | 2. Time Taken | 3. IsSorted?");
 
-        while (N<=100000) {
+        while (n<=M) {
             //Generate a random array of size N
-            LinkedList<Integer> arr = random.ints(0, N).distinct().limit(N).boxed()
+            LinkedList<Integer> arr = random.ints(0, n).distinct().limit(n).boxed()
                     .collect(Collectors.toCollection(LinkedList<Integer>::new));
             Integer[] a = arr.toArray(new Integer[arr.size()]);
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array Before Sort: " + Arrays.toString(a));
+            }
 
             //Perform and time the sorting algorithm
             start = System.nanoTime();
             QuickSort.sort(a, 0, a.length-1);
             timeTaken = System.nanoTime() - start;
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array After Sort: " + Arrays.toString(a));
+            }
 
             //Print the results (and test that it is sorted given that n <= 100).
-            if (N<=1000) {
-                System.out.println(decimalFormat.format(N) + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
+            if (n<=1000) {
+                System.out.println(decimalFormat.format(n) + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
                 if (!isSorted(a, a.length)) {
                     System.out.println(Arrays.toString(a));
                 }
 
             } else {
-                System.out.println(N + " " + decimalFormat.format(timeTaken) + "ns");
+                System.out.println(n + " " + decimalFormat.format(timeTaken) + "ns");
             }
 
             //Increment N for next iteration
-            N*=1.5;
+            n*=FACTOR_OF_N;
         }
 
 
         System.out.println("-----------Testing Enhanced Quick Sort------------");
-        System.out.println("Array Size | Time Taken | IsSorted?");
+        System.out.println("1. Array Size | 2. Time Taken | 3. IsSorted?");
 
-        N=10;
-        while (N<=100000) {
+        n=N;
+        while (n<=M) {
             //Generate a random array of size N
-            LinkedList<Integer> arr = random.ints(0, N).distinct().limit(N).boxed()
+            LinkedList<Integer> arr = random.ints(0, n).distinct().limit(n).boxed()
                     .collect(Collectors.toCollection(LinkedList<Integer>::new));
             Integer[] a = arr.toArray(new Integer[arr.size()]);
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array Before Sort: " + Arrays.toString(a));
+            }
 
             //Perform and time the sorting algorithm
             start = System.nanoTime();
             QuickSortEnhanced.sort(a, 0, a.length-1);
             timeTaken = System.nanoTime() - start;
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array After Sort: " + Arrays.toString(a));
+            }
 
             //Print the results (and test that it is sorted given that n <= 100).
-            if (N<=1000) {
-                System.out.println(N + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
+            if (n<=1000) {
+                System.out.println(n + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
                 if (!isSorted(a, a.length)) {
                     System.out.println(Arrays.toString(a));
                 }
             } else {
-                System.out.println(N + " " + decimalFormat.format(timeTaken) + "ns");
+                System.out.println(n + " " + decimalFormat.format(timeTaken) + "ns");
             }
 
             //Increment N for next iteration
-            N*=1.5;
+            n*=FACTOR_OF_N;
         }
     }
 
@@ -95,4 +113,5 @@ public class Benchmark {
             return false;
         return isSorted(array, length - 1);
     }
+
 }

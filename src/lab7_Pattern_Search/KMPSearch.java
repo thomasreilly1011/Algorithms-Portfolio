@@ -22,7 +22,7 @@ public class KMPSearch {
                 j++;
             }
             if (j==M) {
-                System.out.println("(KMP) Match found at index: " + (i-j));
+                System.out.print("Match found at index: " + (i-j) + ", ");
                 j = lps[j-1];
             } else if (i<N && pat.charAt(j) != txt.charAt(i)) {
                 if (j != 0) {
@@ -32,6 +32,7 @@ public class KMPSearch {
                 }
             }
         }
+        System.out.println();
     }
 
     static void computeLPSArray(String pat, int M, int[] lps)

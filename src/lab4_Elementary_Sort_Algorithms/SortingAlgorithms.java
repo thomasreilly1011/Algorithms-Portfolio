@@ -1,6 +1,12 @@
 package lab4_Elementary_Sort_Algorithms;
 
 public class SortingAlgorithms {
+
+    /**
+     * Performs a selection sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     public static Integer[] selectionSort(Integer[] arr) {
         int temp;
         int min_index;
@@ -19,6 +25,11 @@ public class SortingAlgorithms {
         return arr;
     }
 
+    /**
+     * Performs a insertion sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     public static Integer[] insertionSort (Integer[] arr) {
         int key;
         int j;
@@ -34,6 +45,11 @@ public class SortingAlgorithms {
         return arr;
     }
 
+    /**
+     * Performs a stalin sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     public static Integer[] stalinSort (Integer[] arr) {
         int i = 0;
         for (int j = 1; j < arr.length; i++, j++) {

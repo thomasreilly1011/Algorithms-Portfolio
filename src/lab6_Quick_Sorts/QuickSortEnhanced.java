@@ -3,8 +3,14 @@ package lab6_Quick_Sorts;
 import java.util.Random;
 
 public class QuickSortEnhanced {
+    /** The array size at which the quick sort algorithm will cease and perform insertion sort instead **/
     private static final int CUTOFF = 4;
 
+    /**
+     * Performs a quick sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     static void sort(Integer[] arr, int low, int high) {
         int pi;
         if (high <= low + CUTOFF) {

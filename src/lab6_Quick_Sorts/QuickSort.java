@@ -1,6 +1,11 @@
 package lab6_Quick_Sorts;
 
 public class QuickSort {
+    /**
+     * Performs a quick sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     static void sort(Integer[] arr, int low, int high) {
         int pi;
         if (low < high) {

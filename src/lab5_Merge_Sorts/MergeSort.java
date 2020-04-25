@@ -12,6 +12,11 @@ public class MergeSort
         System.out.println("Random array sorted using merge-sort: " + Arrays.toString(a));
     }
 
+    /**
+     * Performs a merge sort algorithm on an array of integers ordering them from lowest to highest.
+     * @param arr Array of Integers to be sorted
+     * @return The sorted Integer Array.
+     */
     public static Integer[] sort(Integer[] arr) {
         Integer[] a = arr;
         int N = a.length;
@@ -22,8 +27,6 @@ public class MergeSort
         if (N == 1) {
             return a;
         }
-
-
 
         if (N % 2 == 0) {
             left = Arrays.copyOfRange(a, 0, N/2);

@@ -1,7 +1,11 @@
-package lab_8_Tries;
+package lab8_Tries;
 
 import java.util.Arrays;
 
+/**
+ * A simple tree data structure that takes in Strings using the {@code insert} method.
+ * Words can quickly be searched in this structure using the {@code search} method.
+ */
 public class Trie {
     //Constants
     static final int ALPHABET_SIZE = 26;
@@ -24,9 +28,9 @@ public class Trie {
     //Variables
     static TrieNode root = new TrieNode();
 
-    /*
-    If the key is not present, inserts into trie
-    If the key is prefix of Trie node, marks leaf node
+    /**
+     * Inserts a given key into the tree structure.
+     * @param key Key that is to be inserted.
      */
     public static void insert(String key) {
         int letterIndex;
@@ -43,8 +47,10 @@ public class Trie {
         curr.isEndOfWord = true;
     }
 
-    /*
-    Returns true if key presents in trie, else false
+    /**
+     * Searches for the given key in the tree structure and returns true if found, false otherwise.
+     * @param key The key that is to be searched.
+     * @return true if the key is found, false otherwise.
      */
     public static boolean search(String key) {
         int letterIndex;
@@ -61,8 +67,9 @@ public class Trie {
         return curr != null && curr.isEndOfWord;
     }
 
-    /*
-    Main function for testing purposes
+    /**
+     * A simple testing function for the data structure that attempts various inserts and searches.
+     * @param args No arguments nessesary.
      */
     public static void main(String[] args) {
         String[] S = {"bank", "book", "bar", "bring", "film", "filter", "simple", "silt", "silver"};

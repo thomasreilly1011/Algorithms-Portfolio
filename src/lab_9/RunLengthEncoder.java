@@ -5,6 +5,10 @@ public class RunLengthEncoder {
         runLengthEncode(args[0]);
     }
 
+    /**
+     * Performs run length encoding on the given input string and prints the result to the shell.
+     * @param input Input string that is to be encoded.
+     */
     public static void runLengthEncode(String input) {
         char curr = input.charAt(0);
         int count = 1;

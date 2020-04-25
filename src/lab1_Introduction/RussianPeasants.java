@@ -9,6 +9,12 @@ public class RussianPeasants {
 	    System.out.println("The time taken was " + elapsedTime);
     }
 
+    /**
+     * Takes two integer values and computes their product using the russian peasants algorithm.
+     * @param n First integer value to be multiplied
+     * @param m Second integer value to be multiplied
+     * @return Product of n and m
+     */
     public static int russianMultiply(int n, int m) {
         int accumulator = 0;
         while (n != 0) {

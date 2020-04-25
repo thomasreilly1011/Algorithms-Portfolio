@@ -1,5 +1,7 @@
 package lab7_Pattern_Search;
 
+import javax.crypto.spec.PSource;
+
 public class BruteForceSearch {
     public static void search(String txt, String pat) {
         int n = txt.length();
@@ -13,8 +15,9 @@ public class BruteForceSearch {
                 }
             }
             if (i == m) {
-                System.out.println("(BF) Match found at index: " + pos);
+                System.out.print("Match found at index: " + pos + ", ");
             }
         }
+        System.out.println();
     }
 }

@@ -14,37 +14,21 @@ import static java.lang.System.nanoTime;
 public class Benchmark
 {
     private static final Random random = new Random();
-    public static void main(String[] args) {
-//        long start;
-//        long timeTaken;
-//
-//        int[] hugeArr;
-//        int[] hugeArr2;
-//
-//        //Set up the arrays
-//        hugeArr = genRandArr(1000, 5000);
-//        hugeArr2 = hugeArr;
-//
-//        //Testing regular merge sort
-//        System.out.println("Sorting an array with regular merge-sort: " + Arrays.toString(hugeArr));
-//        startTime = nanoTime();
-//        hugeArr = MergeSort.sort(hugeArr);
-//        timeTaken = nanoTime() - startTime;
-//        System.out.println("The regular merge sort took " + timeTaken + " nanoseconds to sort to: " + Arrays.toString(hugeArr));
-//        System.out.println();
-//
-//        //Testing enhanced merge sort
-//        System.out.println("Sorting an array with an enhanced merge-sort: " + Arrays.toString(hugeArr));
-//        startTime = nanoTime();
-//        hugeArr2 = MergeSortEnhanced.mergeSort(hugeArr2);
-//        timeTaken = nanoTime() - startTime;
-//        System.out.println("The enhanced merge sort took " + timeTaken + " nanoseconds to sort to: " + Arrays.toString(hugeArr2));
-//        System.out.println();
-//
-//        System.out.println("-----------Testing Regular Quick Sort------------");
-//        System.out.println("Array Size | Time Taken | IsSorted?");
 
-        int N=10;
+    /** The starting Array size for the benchmark series */
+    private final static int N = 10;
+    /** The limiting Array size for the benchmark series */
+    private final static int M = 100000;
+    /** The factor that N should be incremented by for each benchmark */
+    private final static double FACTOR_OF_N = 1.5;
+
+    /**
+     * Performs a series of BenchMarks on the sorting algorithms available in the {@code MergeSort} and {@code EnhancedMergeSort} class of this package.
+     * Benchmarks record the time taken to sort arrays of size {@code N} up to {@code M} incremented at a factor of {@code FACTOR_OF_N}
+     * @param args No arguments necessary.
+     */
+    public static void main(String[] args) {
+        int n=N;
         long start, timeTaken;
 
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
@@ -52,70 +36,78 @@ public class Benchmark
         decimalFormat.setGroupingSize(3);
 
         System.out.println("-----------Testing Regular Merge Sort------------");
-        System.out.println("Array Size | Time Taken | IsSorted?");
+        System.out.println("1. Array Size | 2. Time Taken | 3. IsSorted?");
 
-        while (N<=100000) {
+        while (n<=M) {
             //Generate a random array of size N
-            LinkedList<Integer> arr = random.ints(0, N).distinct().limit(N).boxed()
+            LinkedList<Integer> arr = random.ints(0, n).distinct().limit(n).boxed()
                     .collect(Collectors.toCollection(LinkedList<Integer>::new));
             Integer[] a = arr.toArray(new Integer[arr.size()]);
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array Before Sort: " + Arrays.toString(a));
+            }
 
             //Perform and time the sorting algorithm
             start = System.nanoTime();
             a=MergeSort.sort(a);
             timeTaken = System.nanoTime() - start;
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array After Sort: " + Arrays.toString(a));
+            }
 
             //Print the results (and test that it is sorted given that n <= 100).
-            if (N<=1000) {
-                System.out.println(decimalFormat.format(N) + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
+            if (n<=1000) {
+                System.out.println(decimalFormat.format(n) + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
                 if (!isSorted(a, a.length)) {
                     System.out.println(Arrays.toString(a));
                 }
 
             } else {
-                System.out.println(N + " " + decimalFormat.format(timeTaken) + "ns");
+                System.out.println(n + " " + decimalFormat.format(timeTaken) + "ns");
             }
 
             //Increment N for next iteration
-            N*=1.5;
+            n*=FACTOR_OF_N;
         }
 
 
         System.out.println("-----------Testing Enhanced Merge Sort------------");
-        System.out.println("Array Size | Time Taken | IsSorted?");
+        System.out.println("1. Array Size | 2. Time Taken | 3. IsSorted?");
 
-        N=10;
-        while (N<=100000) {
+        n=N;
+        while (n<=M) {
             //Generate a random array of size N
-            LinkedList<Integer> arr = random.ints(0, N).distinct().limit(N).boxed()
+            LinkedList<Integer> arr = random.ints(0, n).distinct().limit(n).boxed()
                     .collect(Collectors.toCollection(LinkedList<Integer>::new));
             Integer[] a = arr.toArray(new Integer[arr.size()]);
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array Before Sort: " + Arrays.toString(a));
+            }
 
             //Perform and time the sorting algorithm
             start = System.nanoTime();
             a=MergeSortEnhanced.sort(a);
             timeTaken = System.nanoTime() - start;
 
-            //System.out.println(Arrays.toString(a));
+            if (n==10) {
+                System.out.println("Array After Sort: " + Arrays.toString(a));
+            }
 
             //Print the results (and test that it is sorted given that n <= 100).
-            if (N<=1000) {
-                System.out.println(N + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
+            if (n<=1000) {
+                System.out.println(n + " " + decimalFormat.format(timeTaken)+ "ns " + isSorted(a, a.length));
                 if (!isSorted(a, a.length)) {
                     System.out.println(Arrays.toString(a));
                 }
             } else {
-                System.out.println(N + " " + decimalFormat.format(timeTaken) + "ns");
+                System.out.println(n + " " + decimalFormat.format(timeTaken) + "ns");
             }
 
             //Increment N for next iteration
-            N*=1.5;
+            n*=FACTOR_OF_N;
         }
     }
 
@@ -126,14 +118,5 @@ public class Benchmark
             return false;
         return isSorted(array, length - 1);
     }
-
-//    public static int[] genRandArr(int size, int max) {
-//        int[] arr = new int[size];
-//        Random r = new Random();
-//        for (int i = 0; i < size; i++) {
-//            arr[i] = r.nextInt(max);
-//        }
-//        return arr;
-//    }
 
 }
