@@ -36,20 +36,15 @@ public class HuffmanAlgorithm {
         String in = args[1];
         String out = args[2];
 
-        long start, timeTaken;
-        start = System.nanoTime();
         if (compress) {
             standardFileIn= new Scanner(new File(in));
             binaryFileOut = new BinaryStdOut(new BufferedOutputStream(new FileOutputStream(new File(out))));
-
             compress();
         } else {
             binaryFileIn = new BinaryStdIn(new BufferedInputStream((new FileInputStream(new File(in)))));
             standardFileOut = new FileWriter(out);
             decompress();
         }
-        timeTaken = System.nanoTime() - start;
-        System.out.println("Time taken: " + timeTaken);
     }
 
     /** Huffman Trie Node */
