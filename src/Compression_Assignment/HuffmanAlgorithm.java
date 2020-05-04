@@ -7,10 +7,8 @@ public class HuffmanAlgorithm {
     // alphabet size of extended ASCII
     private static final int R = 256;
 
-    private static Scanner standardFileIn;
-    private static FileWriter standardFileOut;
-    private static BinaryStdIn binaryFileIn;
-    private static BinaryStdOut binaryFileOut;
+    private static BinaryIn binaryFileIn;
+    private static BinaryOut binaryFileOut;
 
     /**
      * Sample client that calls {@code compress()} if the command-line
@@ -36,19 +34,33 @@ public class HuffmanAlgorithm {
         String in = args[1];
         String out = args[2];
 
+        File inputFile = new File(in);
+        File outputFile = new File(out);
+
+        binaryFileIn = new BinaryIn(new FileInputStream(inputFile));
+        binaryFileOut = new BinaryOut(new FileOutputStream(outputFile));
+
+        if (!binaryFileIn.exists()) {
+            System.out.println(in + " does not exist.");
+            System.exit(-1);
+        }
+
         long start, timeTaken;
         start = System.nanoTime();
-        if (compress) {
-            standardFileIn= new Scanner(new File(in));
-            binaryFileOut = new BinaryStdOut(new BufferedOutputStream(new FileOutputStream(new File(out))));
 
+        if (compress) {
             compress();
-        } else {
-            binaryFileIn = new BinaryStdIn(new BufferedInputStream((new FileInputStream(new File(in)))));
-            standardFileOut = new FileWriter(out);
-            decompress();
+            timeTaken = System.nanoTime() - start;
+            System.out.println("Compression Complete!");
+            System.out.println(in + " was compressed to " + out + " to " + outputFile.length() + " bytes.");
         }
-        timeTaken = System.nanoTime() - start;
+        else {
+            decompress();
+            timeTaken = System.nanoTime() - start;
+            System.out.println("Decompression Complete!");
+            System.out.println(in + " was decompressed to " + out + " to " + outputFile.length() + " bytes.");
+        }
+
         System.out.println("Time taken: " + timeTaken);
     }
 
@@ -86,10 +98,9 @@ public class HuffmanAlgorithm {
     public static void compress() {
         //Step One: read in the binary input string.
         StringBuilder sb = new StringBuilder();
-        while (standardFileIn.hasNext())
+        while (!binaryFileIn.isEmpty())
         {
-            sb.append(standardFileIn.nextLine());
-            sb.append("\n");
+            sb.append(binaryFileIn.readChar());
         }
         String dataInString = sb.toString();
         char[] dataInArr = dataInString.toCharArray();
@@ -135,7 +146,6 @@ public class HuffmanAlgorithm {
                 }
             }
         }
-        standardFileIn.close();
         binaryFileOut.close();
     }
 
@@ -156,7 +166,7 @@ public class HuffmanAlgorithm {
             Node curr = root;
             while (true) {
                 if (curr.isLeaf()) {
-                    standardFileOut.write(curr.ch);
+                    binaryFileOut.write(curr.ch);
                     break;
                 }
                 boolean bit = binaryFileIn.readBoolean();
@@ -168,8 +178,7 @@ public class HuffmanAlgorithm {
             }
         }
 
-        standardFileOut.close();
-        binaryFileIn.close();
+        binaryFileOut.close();
     }
 
     /**
