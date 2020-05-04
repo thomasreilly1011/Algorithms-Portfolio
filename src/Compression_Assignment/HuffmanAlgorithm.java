@@ -14,22 +14,28 @@ public class HuffmanAlgorithm {
      * Sample client that calls {@code compress()} if the command-line
      * argument is "compress" an {@code decompress()} if it is "decompress".
      *
-     * @param args the command-line arguments
+     * @param args the command-line arguments.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         if (args.length < 3) {
-            throw new IllegalArgumentException("Not enough arguments.");
+            System.out.println("Not enough arguments.");
+            printUsage();
+            System.exit(-1);
         } else if (args.length > 3) {
-            throw new IllegalArgumentException("Too many arguments.");
+            System.out.println("Too many arguments.");
+            printUsage();
+            System.exit(-1);
         }
 
-        boolean compress;
+        boolean compress = false;
         if (args[0].equals("compress")) {
             compress = true;
         } else if (args[0].equals("decompress")) {
             compress = false;
         } else {
-            throw new IllegalArgumentException("Invalid option " + args[0]);
+            System.out.println("Invalid option " + args[0]);
+            printUsage();
+            System.exit(-1);
         }
         String in = args[1];
         String out = args[2];
@@ -37,11 +43,16 @@ public class HuffmanAlgorithm {
         File inputFile = new File(in);
         File outputFile = new File(out);
 
-        binaryFileIn = new BinaryIn(new FileInputStream(inputFile));
-        binaryFileOut = new BinaryOut(new FileOutputStream(outputFile));
-
-        if (!binaryFileIn.exists()) {
+        try {
+            binaryFileIn = new BinaryIn(new FileInputStream(inputFile));
+        } catch (FileNotFoundException e) {
             System.out.println(in + " does not exist.");
+            System.exit(-1);
+        }
+        try {
+            binaryFileOut = new BinaryOut(new FileOutputStream(outputFile));
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not open file " + out);
             System.exit(-1);
         }
 
@@ -62,6 +73,11 @@ public class HuffmanAlgorithm {
         }
 
         System.out.println("Time taken: " + timeTaken);
+    }
+
+    private static void printUsage() {
+        System.out.println("Usage:");
+        System.out.println("java HuffmanAlgorithm compress|decompress input-file output-file");
     }
 
     /** Huffman Trie Node */
@@ -91,8 +107,8 @@ public class HuffmanAlgorithm {
     private HuffmanAlgorithm() { }
 
     /**
-     * Reads a sequence of 8-bit bytes from {@code standardFileIn}.
-     * compresses them using Huffman codes with an 8-bit alphabet.
+     * Reads characters from {@code binaryFileIn}.
+     * Compresses them using Huffman codes with an 8-bit alphabet.
      * Writes them to {@code binaryFileOut}.
      */
     public static void compress() {
@@ -151,10 +167,11 @@ public class HuffmanAlgorithm {
 
 
     /**
-     * Reads a sequence of bits that represents a Huffman-compressed message from
-     * standard input; expands them; and writes the results to standard output.
+     * Reads in huffman trie from compressed file.
+     * Decodes the compression data with the newly formed huffman trie.
+     * Writes the decoded data to the output file.
      */
-    public static void decompress() throws IOException {
+    public static void decompress() {
         // Step One: read in Huffman trie from input stream
         Node root = readTrie();
 
